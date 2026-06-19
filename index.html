@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Form Setoran Bacaan dan Hafalan Al-Qur'an Online — catat progress bacaan dan hafalan harianmu dengan mudah." />
+  <meta name="theme-color" content="#0d3b2e" />
+  <title>Setoran Bacaan & Hafalan Al-Qur'an</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ===== BACKGROUND ORNAMENTS ===== -->
+  <div class="bg-ornament bg-ornament--1" aria-hidden="true"></div>
+  <div class="bg-ornament bg-ornament--2" aria-hidden="true"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="header-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52">
+          <rect width="64" height="64" rx="16" fill="url(#grad1)" />
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1a6b4a" />
+              <stop offset="100%" stop-color="#0d3b2e" />
+            </linearGradient>
+          </defs>
+          <!-- Open book icon -->
+          <path d="M12 18 C12 16 14 15 16 15 L30 15 L30 48 L16 48 C14 48 12 47 12 45 Z" fill="none" stroke="#d4af37"
+            stroke-width="2" stroke-linejoin="round" />
+          <path d="M52 18 C52 16 50 15 48 15 L34 15 L34 48 L48 48 C50 48 52 47 52 45 Z" fill="none" stroke="#d4af37"
+            stroke-width="2" stroke-linejoin="round" />
+          <line x1="30" y1="15" x2="34" y2="15" stroke="#d4af37" stroke-width="2" />
+          <line x1="30" y1="48" x2="34" y2="48" stroke="#d4af37" stroke-width="2" />
+          <line x1="17" y1="22" x2="28" y2="22" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="17" y1="27" x2="28" y2="27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="17" y1="32" x2="28" y2="32" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="17" y1="37" x2="24" y2="37" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="36" y1="22" x2="47" y2="22" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="36" y1="27" x2="47" y2="27" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="36" y1="32" x2="47" y2="32" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="36" y1="37" x2="43" y2="37" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" />
+        </svg>
+      </div>
+      <div class="header-text">
+        <p class="header-arabic" lang="ar">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+        <h1 class="header-title">Setoran Bacaan &amp; Hafalan</h1>
+        <p class="header-subtitle">Al-Qur'an · Pencatatan Harian</p>
+      </div>
+    </div>
+    <div class="header-divider" aria-hidden="true">
+      <div class="divider-ornament">❖</div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content container" id="main">
+
+    <!-- Tanggal -->
+    <section class="form-card" id="card-identitas">
+      <div class="form-card__header">
+        <span class="form-card__icon">📅</span>
+        <h2 class="form-card__title">Hari / Tanggal Setoran</h2>
+      </div>
+      <div class="form-card__body">
+        <div class="form-group" style="margin-bottom:0">
+          <label for="tanggal" class="form-label">Tanggal <span class="required">*</span></label>
+          <input
+            type="date"
+            id="tanggal"
+            name="tanggal"
+            class="form-input"
+            required
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Membaca -->
+    <section class="form-card" id="card-membaca">
+      <div class="form-card__header">
+        <span class="form-card__icon">📖</span>
+        <h2 class="form-card__title">Membaca</h2>
+        <span class="form-card__badge">Tilawah</span>
+      </div>
+      <div class="form-card__body">
+        <div class="two-col-grid">
+          <div class="form-group">
+            <label for="baca-shubuh" class="form-label">
+              <span class="label-time label-time--shubuh">🌅 Ba'da Shubuh</span>
+            </label>
+            <div class="input-with-unit">
+              <input type="text" id="baca-shubuh" name="baca_shubuh" class="form-input"
+                placeholder="mis. Al-Baqarah: 1-10" />
+            </div>
+            <p class="form-hint">Contoh: Al-Kahfi: 1–5 atau ½ juz</p>
+          </div>
+          <div class="form-group">
+            <label for="baca-maghrib" class="form-label">
+              <span class="label-time label-time--maghrib">🌙 Ba'da Maghrib</span>
+            </label>
+            <div class="input-with-unit">
+              <input type="text" id="baca-maghrib" name="baca_maghrib" class="form-input"
+                placeholder="mis. Al-Baqarah: 11-20" />
+            </div>
+            <p class="form-hint">Contoh: Al-Mulk: 1–30 atau 1 juz</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menghafal -->
+    <section class="form-card" id="card-menghafal">
+      <div class="form-card__header">
+        <span class="form-card__icon">🧠</span>
+        <h2 class="form-card__title">Menghafal</h2>
+        <span class="form-card__badge form-card__badge--gold">Tahfidz</span>
+      </div>
+      <div class="form-card__body">
+        <div class="two-col-grid">
+          <div class="form-group">
+            <label for="hafal-shubuh" class="form-label">
+              <span class="label-time label-time--shubuh">🌅 Ba'da Shubuh</span>
+            </label>
+            <input type="text" id="hafal-shubuh" name="hafal_shubuh" class="form-input"
+              placeholder="mis. Al-Mulk: 1-5" />
+            <p class="form-hint">Ayat yang dihafal baru</p>
+          </div>
+          <div class="form-group">
+            <label for="hafal-maghrib" class="form-label">
+              <span class="label-time label-time--maghrib">🌙 Ba'da Maghrib</span>
+            </label>
+            <input type="text" id="hafal-maghrib" name="hafal_maghrib" class="form-input"
+              placeholder="mis. Al-Mulk: 6-10" />
+            <p class="form-hint">Ayat yang dihafal baru</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Setoran Hafalan -->
+    <section class="form-card" id="card-setoran">
+      <div class="form-card__header">
+        <span class="form-card__icon">✅</span>
+        <h2 class="form-card__title">Setoran Yang Sudah Dihafal</h2>
+      </div>
+      <div class="form-card__body">
+        <div class="form-group">
+          <label for="setoran" class="form-label">Rincian Setoran Hafalan</label>
+          <textarea id="setoran" name="setoran" class="form-input form-textarea"
+            placeholder="Tuliskan ayat atau surah yang sudah disetorkan hari ini...&#10;Contoh: Al-Mulk ayat 1-15, Al-Qalam ayat 1-10"
+            rows="4"></textarea>
+          <p class="form-hint">Tuliskan detail surah dan ayat yang sudah disetorkan kepada guru/ustadz</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Button -->
+    <div class="submit-wrapper">
+      <button type="button" id="btn-simpan" class="btn-submit" onclick="submitSetoran()">
+        <span class="btn-submit__icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+            <polyline points="17 21 17 13 7 13 7 21" />
+            <polyline points="7 3 7 8 15 8" />
+          </svg>
+        </span>
+        <span class="btn-submit__text">Simpan Setoran</span>
+      </button>
+      <p class="submit-note">Data akan otomatis tersimpan ke Google Spreadsheet</p>
+    </div>
+
+  </main>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div id="toast" class="toast" role="alert" aria-live="polite" aria-atomic="true">
+    <div class="toast__icon" id="toast-icon">✅</div>
+    <div class="toast__body">
+      <p class="toast__title" id="toast-title">Berhasil!</p>
+      <p class="toast__message" id="toast-message">Data setoran berhasil disimpan.</p>
+    </div>
+    <button class="toast__close" onclick="closeToast()" aria-label="Tutup notifikasi">×</button>
+  </div>
+
+  <!-- ===== LOADING OVERLAY ===== -->
+  <div id="loading-overlay" class="loading-overlay" aria-hidden="true">
+    <div class="loading-spinner">
+      <div class="spinner-ring"></div>
+      <p class="spinner-text">Menyimpan data<span class="dots">...</span></p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">
+        وَلَقَدْ يَسَّرْنَا الْقُرْاٰنَ لِلذِّكْرِ فَهَلْ مِنْ مُّدَّكِرٍ
+      </p>
+      <p class="footer-sub">
+        "Dan sungguh, telah Kami mudahkan Al-Qur'an untuk peringatan, maka adakah yang mau mengambil pelajaran?" — Q.S.
+        Al-Qamar: 17
+      </p>
+      <p class="footer-copy">© 2026 · Sistem Setoran Al-Qur'an</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
