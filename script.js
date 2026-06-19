@@ -10,7 +10,7 @@
  * Contoh format URL:
  * https://script.google.com/macros/s/AKfycbXXXXXXXXXXXXXXXXXXXX/exec
  */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwBwXIbMbaxx-yoy24G-W8ii91i1gNgu8Z7Y_ppIk20OAHByeR3sKx-LwkyqMOEvOzo/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3VDpOLDWvkosVZLoUj8er3-rPUSvgQOpvwIxKGQNE3lHiozgBdE3Alg4XPFJwMT2vPg/exec';
 
 /* ============================================================
    INISIALISASI
