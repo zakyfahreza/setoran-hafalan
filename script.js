@@ -10,7 +10,7 @@
  * Contoh format URL:
  * https://script.google.com/macros/s/AKfycbXXXXXXXXXXXXXXXXXXXX/exec
  */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3VDpOLDWvkosVZLoUj8er3-rPUSvgQOpvwIxKGQNE3lHiozgBdE3Alg4XPFJwMT2vPg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkuQVPkaPb7a85IILs9-JQlHQEJZZP40UX-2feA5rveAMnA1s9gAae3DqUvPlng9VtZg/exec';
 
 /* ============================================================
    INISIALISASI
@@ -58,27 +58,39 @@ function formatTanggalIndo(dateStr) {
 function validateForm() {
   let isValid = true;
 
+  const namaSelect   = document.getElementById('nama');
   const tanggalInput = document.getElementById('tanggal');
 
   // Reset state
+  namaSelect.classList.remove('is-invalid', 'is-valid');
   tanggalInput.classList.remove('is-invalid', 'is-valid');
 
+  // Validasi Nama
+  if (!namaSelect.value) {
+    namaSelect.classList.add('is-invalid');
+    namaSelect.focus();
+    showToast('error', '⚠️ Perhatian', 'Nama anak wajib dipilih.');
+    isValid = false;
+  } else {
+    namaSelect.classList.add('is-valid');
+  }
+
   // Validasi Tanggal
-  if (!tanggalInput.value) {
+  if (isValid && !tanggalInput.value) {
     tanggalInput.classList.add('is-invalid');
     tanggalInput.focus();
     showToast('error', '⚠️ Perhatian', 'Tanggal wajib diisi.');
     isValid = false;
-  } else {
+  } else if (tanggalInput.value) {
     tanggalInput.classList.add('is-valid');
   }
 
-  // Cek apakah minimal satu kolom diisi (selain nama & tanggal)
-  const bacaShubuh = document.getElementById('baca-shubuh').value.trim();
+  // Cek apakah minimal satu kolom diisi
+  const bacaShubuh  = document.getElementById('baca-shubuh').value.trim();
   const bacaMaghrib = document.getElementById('baca-maghrib').value.trim();
   const hafalShubuh = document.getElementById('hafal-shubuh').value.trim();
   const hafalMaghrib = document.getElementById('hafal-maghrib').value.trim();
-  const setoran = document.getElementById('setoran').value.trim();
+  const setoran     = document.getElementById('setoran').value.trim();
 
   if (isValid && !bacaShubuh && !bacaMaghrib && !hafalShubuh && !hafalMaghrib && !setoran) {
     showToast('warning', '📋 Perhatian', 'Isi minimal satu kolom bacaan, hafalan, atau setoran.');
@@ -106,16 +118,20 @@ async function submitSetoran() {
   if (!validateForm()) return;
 
   // Ambil data dari form
+  const nama       = document.getElementById('nama').value;
   const tanggalRaw = document.getElementById('tanggal').value;
   const payload = {
-    tanggal: formatTanggalIndo(tanggalRaw),
-    tanggal_iso: tanggalRaw,
-    baca_shubuh: document.getElementById('baca-shubuh').value.trim() || '-',
+    nama:         nama,
+    tanggal:      formatTanggalIndo(tanggalRaw),
+    tanggal_iso:  tanggalRaw,
+    // Kunci unik gabungan: memastikan tiap anak punya baris sendiri per hari
+    kunci_unik:   nama + '|' + tanggalRaw,
+    baca_shubuh:  document.getElementById('baca-shubuh').value.trim()  || '-',
     baca_maghrib: document.getElementById('baca-maghrib').value.trim() || '-',
     hafal_shubuh: document.getElementById('hafal-shubuh').value.trim() || '-',
-    hafal_maghrib: document.getElementById('hafal-maghrib').value.trim() || '-',
-    setoran: document.getElementById('setoran').value.trim() || '-',
-    timestamp: new Date().toISOString(),
+    hafal_maghrib:document.getElementById('hafal-maghrib').value.trim()|| '-',
+    setoran:      document.getElementById('setoran').value.trim()      || '-',
+    timestamp:    new Date().toISOString(),
   };
 
   // Tampilkan loading
@@ -134,7 +150,7 @@ async function submitSetoran() {
     // Dengan mode no-cors, response.type = 'opaque' → kita anggap sukses jika tidak ada error
     setLoading(false);
     setButtonLoading(false);
-    showToast('success', '✅ Berhasil!', `Data setoran tanggal ${payload.tanggal} berhasil disimpan ke Spreadsheet.`);
+    showToast('success', '✅ Berhasil!', `Data setoran ${payload.nama} — ${payload.tanggal} berhasil disimpan.`);
     resetForm();
 
   } catch (err) {
@@ -243,15 +259,21 @@ function closeToast() {
    INPUT REAL-TIME VALIDATION FEEDBACK
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
+  // Validasi real-time: tanggal
   const tanggalInput = document.getElementById('tanggal');
   if (tanggalInput) {
-    tanggalInput.addEventListener('input', function () {
-      if (this.value) {
-        this.classList.remove('is-invalid');
-        this.classList.add('is-valid');
-      } else {
-        this.classList.remove('is-valid');
-      }
+    tanggalInput.addEventListener('change', function () {
+      this.classList.toggle('is-valid', !!this.value);
+      this.classList.toggle('is-invalid', !this.value);
+    });
+  }
+
+  // Validasi real-time: nama dropdown
+  const namaSelect = document.getElementById('nama');
+  if (namaSelect) {
+    namaSelect.addEventListener('change', function () {
+      this.classList.toggle('is-valid', !!this.value);
+      this.classList.remove('is-invalid');
     });
   }
 });

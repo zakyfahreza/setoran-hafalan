@@ -68,22 +68,33 @@
   <!-- ===== MAIN CONTENT ===== -->
   <main class="main-content container" id="main">
 
-    <!-- Tanggal -->
+    <!-- Identitas: Nama + Tanggal -->
     <section class="form-card" id="card-identitas">
       <div class="form-card__header">
         <span class="form-card__icon">📅</span>
-        <h2 class="form-card__title">Hari / Tanggal Setoran</h2>
+        <h2 class="form-card__title">Identitas &amp; Tanggal Setoran</h2>
       </div>
       <div class="form-card__body">
-        <div class="form-group" style="margin-bottom:0">
-          <label for="tanggal" class="form-label">Tanggal <span class="required">*</span></label>
-          <input
-            type="date"
-            id="tanggal"
-            name="tanggal"
-            class="form-input"
-            required
-          />
+        <div class="two-col-grid">
+          <div class="form-group">
+            <label for="nama" class="form-label">Nama Anak <span class="required">*</span></label>
+            <select id="nama" name="nama" class="form-input form-select" required>
+              <option value="" disabled selected>— Pilih nama —</option>
+              <option value="Hamzah">Hamzah</option>
+              <option value="Yahya">Yahya</option>
+              <option value="Hamnah">Hamnah</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="tanggal" class="form-label">Tanggal <span class="required">*</span></label>
+            <input
+              type="date"
+              id="tanggal"
+              name="tanggal"
+              class="form-input"
+              required
+            />
+          </div>
         </div>
       </div>
     </section>
